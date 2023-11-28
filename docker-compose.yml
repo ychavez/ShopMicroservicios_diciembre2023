@@ -6,3 +6,9 @@ services:
     build:
       context: .
       dockerfile: CatalogApi/Dockerfile
+
+  catalogdb:
+    image: mongo
+
+volumes:
+  mongo_data:
