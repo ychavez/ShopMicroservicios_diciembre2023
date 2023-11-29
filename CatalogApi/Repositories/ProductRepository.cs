@@ -19,19 +19,21 @@ namespace CatalogApi.Repositories
             return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
 
-        public Task<Product> GetProduct(string id)
+        public async Task<Product> GetProduct(string id)
+         => await catalogContext.Products
+                                .Find(x => x.Id == id)
+                                .FirstOrDefaultAsync();
+
+        public async Task<IEnumerable<Product>> GetProducts()
+         => await catalogContext.Products.Find(x => true).ToListAsync();
+
+        public async Task<bool> UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            var updateResult = await catalogContext.Products
+                 .ReplaceOneAsync(filter: x => x.Id == product.Id, product);
+
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
         }
 
-        public Task<IEnumerable<Product>> GetProducts()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
