@@ -5,6 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=80
+      - "DatabaseSettings__ConnectionString=mongodb://catalogdb:27017"
     ports:
       - "8000:80"
     depends_on: 

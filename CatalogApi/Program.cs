@@ -1,5 +1,6 @@
 
 using CatalogApi.Data;
+using CatalogApi.Repositories;
 
 namespace CatalogApi
 {
@@ -15,6 +16,7 @@ namespace CatalogApi
 
 
             builder.Services.AddScoped<ICatalogContext, CatalogContext>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
