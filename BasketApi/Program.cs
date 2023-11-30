@@ -1,5 +1,6 @@
 
 using BasketApi.Repositories;
+using InventoryGrpc.Protos;
 
 namespace BasketApi
 {
@@ -10,6 +11,9 @@ namespace BasketApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddGrpcClient<Existence.ExistenceClient>
+                (x => x.Address = new Uri(builder.Configuration["GrpcSettings:HostAddress"]!));
+
             builder.Services.AddStackExchangeRedisCache(x =>
                 x.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString"));
 
