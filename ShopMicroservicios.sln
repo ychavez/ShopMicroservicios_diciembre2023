@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketApi", "BasketApi\Bask
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncProgramming", "AsyncProgramming\AsyncProgramming.csproj", "{118ECF93-1B54-4756-AB29-75686F73D107}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{89DE7BA1-0DC5-43C7-AA5D-D7518A744FF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryGrpc", "InventoryGrpc\InventoryGrpc.csproj", "{49C28671-68B4-4D0D-86C9-0E6C9C7E2DD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{118ECF93-1B54-4756-AB29-75686F73D107}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{118ECF93-1B54-4756-AB29-75686F73D107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{118ECF93-1B54-4756-AB29-75686F73D107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C28671-68B4-4D0D-86C9-0E6C9C7E2DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C28671-68B4-4D0D-86C9-0E6C9C7E2DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C28671-68B4-4D0D-86C9-0E6C9C7E2DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C28671-68B4-4D0D-86C9-0E6C9C7E2DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +55,7 @@ Global
 		{3841EE71-BEC3-4286-800B-117F2C2BE6A3} = {4C9A69CA-03FE-449F-9964-DACB1CD5477C}
 		{FE6155CA-69DE-4A22-867C-AF4712FA4AC0} = {A00645F2-3604-47C5-B84F-4B4F4A4165EA}
 		{118ECF93-1B54-4756-AB29-75686F73D107} = {031C3394-2897-417F-9682-3F9D6691FE48}
+		{49C28671-68B4-4D0D-86C9-0E6C9C7E2DD2} = {89DE7BA1-0DC5-43C7-AA5D-D7518A744FF1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D7149830-4F62-44E6-8321-2B4AEBC5938A}
