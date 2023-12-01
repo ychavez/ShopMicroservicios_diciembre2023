@@ -13,10 +13,7 @@ namespace BasketApi.Controllers
         [HttpGet("{userName}")]
         public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
         {
-
-
             var basket = await basketRepository.GetBasket(userName);
-
             return Ok(basket ?? new ShoppingCart(userName));
         }
 
