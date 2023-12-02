@@ -49,6 +49,7 @@ namespace Ordering.Infrastructure.Persistence
                 var method = typeof(OrderContext).GetMethod(nameof(MultitenantExpression),
                     BindingFlags.NonPublic| BindingFlags.Static)?.MakeGenericMethod(entityType);
 
+
                 var filter = method?.Invoke(null,new object[] { this });
 
                 entity.SetQueryFilter((LambdaExpression)filter!);
