@@ -11,6 +11,7 @@ namespace Ordering.Application
         public static IServiceCollection AddApplicationServiceRegistration(this IServiceCollection services) 
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehavior<,>));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());        
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(x=> x.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
