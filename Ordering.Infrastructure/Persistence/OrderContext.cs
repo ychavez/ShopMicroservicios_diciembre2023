@@ -14,7 +14,7 @@ namespace Ordering.Infrastructure.Persistence
         }
 
         public DbSet<Order> Orders { get; set; }
-        public Guid TenantId { get; private set; }
+        public Guid TenantId { get; private set; } = Guid.Parse("F8040104-03A2-41AE-8EA4-8DB568790BF6");
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

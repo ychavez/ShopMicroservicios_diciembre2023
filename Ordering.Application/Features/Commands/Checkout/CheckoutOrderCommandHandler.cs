@@ -13,10 +13,7 @@ namespace Ordering.Application.Features.Commands.Checkout
             CancellationToken cancellationToken)
         {
             var order = mapper.Map<Order>(request);
-
-
             var newOrder = await  repository.AddAsync(order);
-
             return newOrder.Id;
         }
     }
