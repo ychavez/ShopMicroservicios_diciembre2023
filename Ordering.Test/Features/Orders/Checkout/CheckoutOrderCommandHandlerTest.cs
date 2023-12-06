@@ -72,11 +72,6 @@ namespace Ordering.Test.Features.Orders.Checkout
             //Assert
             Assert.Equal(result, expected);
         }
-
-
-
-
-
     }
 
     public class Calculator()
@@ -88,7 +83,6 @@ namespace Ordering.Test.Features.Orders.Checkout
                 b++;
             }
             return a + b;
-
         }
     }
 }
