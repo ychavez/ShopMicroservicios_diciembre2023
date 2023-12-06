@@ -13,6 +13,7 @@ namespace Ordering.Api.Controllers
         public async Task<ActionResult<int>> CreateOrder([FromBody] CheckoutOrderCommand command)
             => await mediator.Send(command);
 
+
         [HttpGet("{userName}")]
         public async Task<ActionResult<IEnumerable<OrdersViewModel>>> GetOrders(string userName)
             => await mediator.Send(new GetOrdersListQuery { UserName = userName });
