@@ -21,21 +21,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryGrpc", "InventoryGrpc\InventoryGrpc.csproj", "{49C28671-68B4-4D0D-86C9-0E6C9C7E2DD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MISC", "MISC\MISC.csproj", "{0CF3B01C-5AB2-458C-811B-5C152F3895F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MISC", "MISC\MISC.csproj", "{0CF3B01C-5AB2-458C-811B-5C152F3895F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{E32A9709-0EE9-4DCB-9A24-F76C043C1395}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Domain", "Ordering.Domain\Ordering.Domain.csproj", "{FFBFD800-6EBE-4A7F-B6CE-D1F33507575E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Domain", "Ordering.Domain\Ordering.Domain.csproj", "{FFBFD800-6EBE-4A7F-B6CE-D1F33507575E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Infrastructure", "Ordering.Infrastructure\Ordering.Infrastructure.csproj", "{44EE805D-E87E-46F3-B89B-4CD0544B0B12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Infrastructure", "Ordering.Infrastructure\Ordering.Infrastructure.csproj", "{44EE805D-E87E-46F3-B89B-4CD0544B0B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Application", "Ordering.Application\Ordering.Application.csproj", "{36DD6CB3-A46F-4A91-AB9E-A76C2E87E33E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Application", "Ordering.Application\Ordering.Application.csproj", "{36DD6CB3-A46F-4A91-AB9E-A76C2E87E33E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Api", "Ordering.Api\Ordering.Api.csproj", "{871DE988-F20E-43E1-B9BE-AA9797EB849F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Api", "Ordering.Api\Ordering.Api.csproj", "{871DE988-F20E-43E1-B9BE-AA9797EB849F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Test", "Ordering.Test\Ordering.Test.csproj", "{C72A68AF-7D0C-473C-A4BC-B3731FDF9482}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Test", "Ordering.Test\Ordering.Test.csproj", "{C72A68AF-7D0C-473C-A4BC-B3731FDF9482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection.Api", "DependencyInjection.Api\DependencyInjection.Api.csproj", "{0F38077C-5E46-4FBD-BBE2-3C249D2BE285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjection.Api", "DependencyInjection.Api\DependencyInjection.Api.csproj", "{0F38077C-5E46-4FBD-BBE2-3C249D2BE285}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryTest", "MemoryTest\MemoryTest.csproj", "{68B594C8-1291-44AD-B2C4-1F9C1A62A9F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{0F38077C-5E46-4FBD-BBE2-3C249D2BE285}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F38077C-5E46-4FBD-BBE2-3C249D2BE285}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F38077C-5E46-4FBD-BBE2-3C249D2BE285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B594C8-1291-44AD-B2C4-1F9C1A62A9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B594C8-1291-44AD-B2C4-1F9C1A62A9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B594C8-1291-44AD-B2C4-1F9C1A62A9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B594C8-1291-44AD-B2C4-1F9C1A62A9F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{871DE988-F20E-43E1-B9BE-AA9797EB849F} = {E32A9709-0EE9-4DCB-9A24-F76C043C1395}
 		{C72A68AF-7D0C-473C-A4BC-B3731FDF9482} = {E32A9709-0EE9-4DCB-9A24-F76C043C1395}
 		{0F38077C-5E46-4FBD-BBE2-3C249D2BE285} = {031C3394-2897-417F-9682-3F9D6691FE48}
+		{68B594C8-1291-44AD-B2C4-1F9C1A62A9F4} = {031C3394-2897-417F-9682-3F9D6691FE48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D7149830-4F62-44E6-8321-2B4AEBC5938A}
