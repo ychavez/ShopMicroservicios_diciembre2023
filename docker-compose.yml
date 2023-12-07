@@ -37,8 +37,15 @@ services:
       context: .
       dockerfile: Ordering.Api/Dockerfile
 
+  authenticationapi:
+    image: ${DOCKER_REGISTRY-}authenticationapi
+    build:
+      context: .
+      dockerfile: AuthenticationApi/Dockerfile
+
 volumes:
   mongo_data:
+
 
 
 
