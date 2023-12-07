@@ -1,6 +1,8 @@
 ﻿using BasketApi.Entities;
 using BasketApi.Repositories;
+using EventBus.Messages.Events;
 using InventoryGrpc.Protos;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BasketApi.Controllers
@@ -8,8 +10,35 @@ namespace BasketApi.Controllers
     [ApiController]
     [Route("api/v1/[controller]")]
     public class BasketController(IBasketRepository basketRepository,
-        Existence.ExistenceClient existenceClient) : ControllerBase
+        Existence.ExistenceClient existenceClient, IPublishEndpoint publishEndpoint) : ControllerBase
     {
+
+        [HttpPost("Checkout")]
+        public async Task<ActionResult> Checkout([FromBody] BasketCheckout basketCheckout) 
+        {
+            var basket = await basketRepository.GetBasket(basketCheckout.UserName);
+
+            if (basket is null)
+                return BadRequest();
+
+            var eventMessage = new BasketCheckoutEvent
+            {
+                UserName = basketCheckout.UserName,
+                Address = basketCheckout.Address,
+                FirstName = basketCheckout.FirstName,
+                LastName = basketCheckout.LastName,
+                PaymentMethod = basketCheckout.PaymentMethod,
+                TotalPrice = basketCheckout.TotalPrice,
+            };
+
+            await publishEndpoint.Publish(eventMessage);
+
+            await basketRepository.DeleteBasket(basketCheckout.UserName);
+
+            return Accepted();
+        }
+
+
         [HttpGet("{userName}")]
         public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
         {

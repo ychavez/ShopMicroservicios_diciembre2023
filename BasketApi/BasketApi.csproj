@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventBus.Messages\EventBus.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Protobuf Include="..\InventoryGrpc\Protos\Existence.proto" GrpcServices="Client">
       <Link>Protos\Existence.proto</Link>
     </Protobuf>

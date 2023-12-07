@@ -16,7 +16,9 @@ namespace Ordering.Infrastructure.Repositories
 
             query = query.Skip(offset).Take(limit);
 
-            query = includeStrings.Aggregate(query, (current, itemInclude) => current.Include(itemInclude));
+            query = includeStrings
+                .Aggregate(query, (current, itemInclude) => current
+                .Include(itemInclude));
 
             if (predicate is not null)
                 query = query.Where(predicate);
@@ -32,7 +34,9 @@ namespace Ordering.Infrastructure.Repositories
 
 
         public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
-            => await orderContext.Set<T>().Where(predicate).ToListAsync();
+            => await orderContext.Set<T>()
+            .Where(predicate)
+            .ToListAsync();
 
         public async Task<T> AddAsync(T item)
         {

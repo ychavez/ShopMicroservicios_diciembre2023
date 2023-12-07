@@ -1,4 +1,7 @@
+using EventBus.Messages.Common;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Ordering.Api.Events;
 using Ordering.Application;
 using Ordering.Application.Contracts;
 using Ordering.Infrastructure.Persistence;
@@ -24,6 +27,23 @@ namespace Ordering.Api
 
             builder.Services.AddDbContext<OrderContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("OrderingConnection")));
+
+            builder.Services.AddMassTransit(x =>
+            {
+                x.AddConsumer<CheckoutEventConsumer>();
+
+                x.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(builder.Configuration["EventBusSettings:HostAddres"]);
+
+                    cfg.ReceiveEndpoint(EventBusConstants.BasketCheckoutQueue,
+                        x => x.ConfigureConsumer<CheckoutEventConsumer>(ctx));
+                });
+            });
+
+            builder.Services.AddAutoMapper(typeof(Program));
+
+            builder.Services.AddScoped<CheckoutEventConsumer>();
 
             var app = builder.Build();
 
