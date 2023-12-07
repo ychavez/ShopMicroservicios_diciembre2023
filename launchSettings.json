@@ -6,7 +6,8 @@
       "serviceActions": {
         "catalogapi": "StartDebugging",
         "basketapi": "StartDebugging",
-        "inventorygrpc": "StartDebugging"
+        "inventorygrpc": "StartDebugging",
+        "ordering.api": "StartDebugging"
       }
     }
   }

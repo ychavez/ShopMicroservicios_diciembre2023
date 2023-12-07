@@ -24,6 +24,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=80
       - "CacheSettings__ConnectionString=basketdb:6379" 
+      - "GrpcSettings__HostAddress=http://inventorygrpc:8002"
+      - "EventBusSettings__HostAddress=amqp://guest:guest@rabbitmq:5672" 
     ports:
       - "8001:80"
     depends_on:
@@ -36,12 +38,13 @@ services:
 
 
   inventorygrpc:
+    container_name: inventorygrpc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTP_PORTS=8002
       - ASPNETCORE_HTTPS_PORTS=8081
     ports:
-      - "8080"
+      - "8002"
       - "8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
@@ -60,3 +63,14 @@ services:
    ports:
     - 5672:5672
     - 15672:15672 
+
+  ordering.api:
+    container_name: ordering.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+      - "ConnectionStrings__OrderingConnection=Server=orderdb,1433;Database=Order;Encrypt=false;User id=sa;Password=Passw0rd23"
+      - "EventBusSettings__HostAddres=amqp://guest:guest@rabbitmq:5672" 
+    ports:
+      - "8003:80"
+
