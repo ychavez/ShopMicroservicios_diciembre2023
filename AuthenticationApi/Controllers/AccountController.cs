@@ -1,6 +1,8 @@
-﻿using AuthenticationApi.Models;
+﻿using AuthenticationApi.DTO;
+using AuthenticationApi.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -33,6 +35,46 @@ namespace AuthenticationApi.Controllers
             return NoContent();
         }
 
+        [HttpPost("Register")]
+        public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
+        {
+            if (await UserExists(registerDTO.UserName.ToLower()))
+                return BadRequest();
+
+            var user = new DWUser
+            {
+                UserName = registerDTO.UserName.ToLower(),
+                Email = registerDTO.Email,
+                Badge = registerDTO.Badge,
+                Tenant = registerDTO.Tenant
+            };
+
+            var result = await userManager.CreateAsync(user, registerDTO.Password);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok(new UserDTO { UserName = registerDTO.UserName, Token = await GetToken(user) });
+        }
+
+        [HttpPost("Login")]
+        public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
+        {
+            if (!await UserExists(loginDTO.UserName))
+                return Unauthorized();
+
+            var user = await userManager.Users.SingleAsync(x => x.UserName == loginDTO.UserName.ToLower());
+
+            var result = await signInManager.CheckPasswordSignInAsync(user, loginDTO.Password, true);
+
+            if (!result.Succeeded)
+                return Unauthorized();
+
+            return Ok(new UserDTO { Token = await GetToken(user), UserName = user.UserName! });
+        }
+
+        private async Task<bool> UserExists(string username)
+           => await userManager.Users.AnyAsync(x => x.UserName == username);
 
         private async Task<string> GetToken(DWUser user)
         {
@@ -62,7 +104,7 @@ namespace AuthenticationApi.Controllers
             };
 
             var encodedJWT = new JwtSecurityTokenHandler();
-            
+
             var token = encodedJWT.CreateToken(toketDescriptor);
 
             return encodedJWT.WriteToken(token);
