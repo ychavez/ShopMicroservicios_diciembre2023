@@ -43,8 +43,10 @@ services:
       context: .
       dockerfile: AuthenticationApi/Dockerfile
 
+ 
 volumes:
   mongo_data:
+
 
 
 
