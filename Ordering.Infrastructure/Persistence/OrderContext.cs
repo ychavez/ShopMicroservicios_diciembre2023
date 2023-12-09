@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Ordering.Domain.Common;
 using Ordering.Domain.Entities;
 using System.Linq.Expressions;
@@ -8,13 +9,21 @@ namespace Ordering.Infrastructure.Persistence
 {
     public class OrderContext : DbContext
     {
-        public OrderContext(DbContextOptions options) : base(options)
-        {
+        private readonly IHttpContextAccessor httpContextAccessor;
 
+        public OrderContext(DbContextOptions options, IHttpContextAccessor httpContextAccessor) : base(options)
+        {
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         public DbSet<Order> Orders { get; set; }
-        public Guid TenantId { get; private set; } = Guid.Parse("F8040104-03A2-41AE-8EA4-8DB568790BF6");
+
+        //15 -> 15
+
+        //1.- agregar el usuario logueado en el createdBy y  el LastModifiedBy
+        // 2. - queremos que de manera automatica se agregue el tenant al crear una orden
+
+        public Guid TenantId => Guid.Parse(httpContextAccessor?.HttpContext?.User?.Claims.First(x=> x.Type == "Tenant").Value!);
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
